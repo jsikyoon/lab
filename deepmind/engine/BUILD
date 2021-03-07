@@ -192,6 +192,7 @@ cc_library(
         "//deepmind/model_generation:lua_model",
         "//deepmind/tensor:lua_tensor",
     ],
+    alwayslink = 1,  # provides symbols for a shared C and C++ header
 )
 
 cc_test(

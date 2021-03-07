@@ -2,7 +2,7 @@
 #   DeepMind Lab, a machine-learning research environment
 #   forked from ioquake/ioq3.
 
-licenses(["restricted"])
+licenses(["restricted"])  # GPLv2, code/tools/lcc is separate
 
 exports_files(["LICENSE"])
 
@@ -653,7 +653,7 @@ MAPS = glob(["assets/maps/src/*.map"])
 genrule(
     name = "map_assets",
     srcs = MAPS,
-    outs = ["baselab/" + f[16:-3] + "pk3" for f in MAPS],
+    outs = ["baselab/" + f[12:-3] + "pk3" for f in MAPS],
     cmd = "cp -t $(@D)/baselab $(SRCS); " +
           "for s in $(SRCS); do " +
           "  BM=$$(basename $${s}); M=$${BM/.map/}; " +
@@ -807,7 +807,6 @@ cc_library(
         "-lrt",
     ],
     deps = IOQ3_COMMON_DEPS,
-    alwayslink = 1,
 )
 
 cc_library(
@@ -827,7 +826,6 @@ cc_library(
     defines = IOQ3_COMMON_DEFINES,
     linkopts = ["-lOSMesa"],
     deps = IOQ3_COMMON_DEPS,
-    alwayslink = 1,
 )
 
 cc_library(
@@ -850,7 +848,6 @@ cc_library(
         "-lX11",
     ],
     deps = IOQ3_COMMON_DEPS,
-    alwayslink = 1,
 )
 
 cc_library(
@@ -873,7 +870,6 @@ cc_library(
         "-lGL",
     ],
     deps = IOQ3_COMMON_DEPS + ["//third_party/GL/util:egl_util"],
-    alwayslink = 1,
 )
 
 cc_binary(
